@@ -19,7 +19,7 @@ load "config/recipes/python"
 load "config/recipes/libxslt"
 
 # Server IP, and roles
-set :ip, "162.209.72.254"
+set :ip, "162.242.209.23"
 server "#{ip}", :web, :app, :db, primary: true
 
 # Application info
@@ -30,7 +30,7 @@ set :use_sudo, false
 
 # Repository info
 set :scm, "git"
-set :git_user, 'waldouribe'
+set :git_user, 'osvaldomiranda'
 set :repository, "git@github.com:#{git_user}/#{application}.git"
 set :branch, "master"
 
