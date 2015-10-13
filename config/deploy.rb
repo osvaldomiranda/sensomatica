@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require 'capistrano/ext/multistage'
  
 # Load recipes
 load "config/recipes/base"
@@ -6,7 +7,7 @@ load "config/recipes/git"
 load "config/recipes/make"
 load "config/recipes/nginx"
 load "config/recipes/unicorn"
-load "config/recipes/postgresql"
+load "config/recipes/postgresql" 
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
@@ -18,15 +19,16 @@ load "config/recipes/ruby_dev"
 load "config/recipes/python"
 load "config/recipes/libxslt"
 
-# Server IP, and roles
-set :ip, "162.242.209.23"
-server "#{ip}", :web, :app, :db, primary: true
+set :stages, %w(production staging)
+set :default_stage, "production"
 
 # Application info
 set :user, "deployer"
-set :application, "capistrano_deploy"
+set :application, "hikerdata"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
+set :rails_env, 'stagind'
+
 
 # Repository info
 set :scm, "git"
