@@ -12,7 +12,6 @@ class Api::V1::ReadingsController < ApplicationController
       render :json=> {reading: :true} , :status => :ok
     else
       render :json=> {reading: :false} , :status => :ok
-    end  
-    end   
+    end     
   end
 end
