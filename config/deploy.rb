@@ -11,10 +11,10 @@ load "config/recipes/postgresql"
 load "config/recipes/nodejs"
 load "config/recipes/rbenv"
 load "config/recipes/check"
-load "config/recipes/solr"
-load "config/recipes/redis"
+# load "config/recipes/solr"
+# load "config/recipes/redis"
 load "config/recipes/bundler"
-load "config/recipes/sidekiq"
+# load "config/recipes/sidekiq"
 load "config/recipes/ruby_dev"
 load "config/recipes/python"
 load "config/recipes/libxslt"
@@ -23,8 +23,8 @@ set :stages, %w(production staging)
 set :default_stage, "production"
 
 # Application info
-set :user, "deployer"
-set :application, "hikerdata"
+set :user, "ubuntu"
+set :application, "sensomatica"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 set :rails_env, 'stagind'

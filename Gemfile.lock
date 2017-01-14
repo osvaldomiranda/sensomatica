@@ -264,7 +264,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   mini_magick
-  net-ssh (~> 2.7.0)
+  net-ssh
   pg
   rails (= 4.0.1)
   rb-readline

@@ -85,7 +85,7 @@ group :development do
 
   # Pure Ruby implementation of an SSH (protocol 2) client 
   # http://net-ssh.github.com/net-ssh
-  gem 'net-ssh', '~> 2.7.0'
+  gem 'net-ssh'
 end
 
 
