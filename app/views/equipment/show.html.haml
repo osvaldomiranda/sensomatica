@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Codigo:
+  = @equipment.codigo
+%p
+  %b Nombre:
+  = @equipment.nombre
+%p
+  %b Descripcion:
+  = @equipment.descripcion
+%p
+  %b Caracteristicas:
+  = @equipment.caracteristicas
+
+= link_to 'Edit', edit_equipment_path(@equipment)
+\|
+= link_to 'Back', equipment_index_path

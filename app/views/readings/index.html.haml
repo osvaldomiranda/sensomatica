@@ -1,0 +1,37 @@
+%h1 Listing readings
+
+%table
+  %thead
+    %tr
+      %th Equipment
+      %th Humedad origen1
+      %th Humedad origen2
+      %th Humedad origen3
+      %th Temperatura origen
+      %th Humedad1
+      %th Humedad2
+      %th Humedad3
+      %th Temperatura
+      %th
+      %th
+      %th
+
+  %tbody
+    - @readings.each do |reading|
+      %tr
+        %td= reading.equipment
+        %td= reading.humedad_origen1
+        %td= reading.humedad_origen2
+        %td= reading.humedad_origen3
+        %td= reading.temperatura_origen
+        %td= reading.humedad1
+        %td= reading.humedad2
+        %td= reading.humedad3
+        %td= reading.temperatura
+        %td= link_to 'Show', reading
+        %td= link_to 'Edit', edit_reading_path(reading)
+        %td= link_to 'Destroy', reading, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reading', new_reading_path

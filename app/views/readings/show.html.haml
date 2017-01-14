@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Equipment:
+  = @reading.equipment
+%p
+  %b Humedad origen1:
+  = @reading.humedad_origen1
+%p
+  %b Humedad origen2:
+  = @reading.humedad_origen2
+%p
+  %b Humedad origen3:
+  = @reading.humedad_origen3
+%p
+  %b Temperatura origen:
+  = @reading.temperatura_origen
+%p
+  %b Humedad1:
+  = @reading.humedad1
+%p
+  %b Humedad2:
+  = @reading.humedad2
+%p
+  %b Humedad3:
+  = @reading.humedad3
+%p
+  %b Temperatura:
+  = @reading.temperatura
+
+= link_to 'Edit', edit_reading_path(@reading)
+\|
+= link_to 'Back', readings_path

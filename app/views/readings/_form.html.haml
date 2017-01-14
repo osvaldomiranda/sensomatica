@@ -1,0 +1,16 @@
+= simple_form_for(@reading) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :equipment
+    = f.input :humedad_origen1
+    = f.input :humedad_origen2
+    = f.input :humedad_origen3
+    = f.input :temperatura_origen
+    = f.input :humedad1
+    = f.input :humedad2
+    = f.input :humedad3
+    = f.input :temperatura
+
+  .form-actions
+    = f.button :submit
