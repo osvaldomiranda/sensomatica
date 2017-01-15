@@ -7,7 +7,7 @@ class Api::V1::ReadingsController < ApplicationController
     puts params
     puts "*****************"
 
-    @msg = Readind.import(params[:file]).force_encoding('utf-8')
+    @msg = Reading.import(params[:file])
     if @msg == " "
       render :json=> {reading: :true} , :status => :ok
     else
