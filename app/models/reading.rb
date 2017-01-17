@@ -9,14 +9,6 @@ class Reading < ActiveRecord::Base
     CSV.foreach(file.path, col_sep: ';', headers: true, encoding: "ISO-8859-1" ) do |row|
       rowHash = row.to_hash
 
-
-          puts "************************"  
-          puts "************************"  
-          puts   rowHash
-          puts "************************"  
-          puts "************************" 
-
-
       @reading = Reading.where(file_name: rowHash["file_name"]).first
       if ! @reading.present?
       	equipment = Equipment.where(codigo: rowHash["equipment_code"])
