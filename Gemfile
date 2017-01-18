@@ -99,6 +99,9 @@ group :production, :staging do
 
   # Use unicorn as the app server
   gem 'unicorn'
+
+  #for console in server
+  gem 'rb-readline'
 end
 
 group :development, :staging do
