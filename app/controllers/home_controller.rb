@@ -1,14 +1,11 @@
 class HomeController < ApplicationController
   def index
 
-    @chart_data = Reading.select(:created_at, :humedad_origen1).pluck
-            
-            
+    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen1)
+    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen2)
+    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen3)          
 
-    temp = Reading.last.temperatura_origen
-
-    voltage = (temp * 5.0)/1024
-
-    @temperatura = (voltage - 0.5) * 100 
+    @temperatura = 32.4
+    
   end
 end

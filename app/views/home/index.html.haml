@@ -35,7 +35,7 @@
       .row
         .col-md-12 
           %h1 
-            Sensores y automatización para la agricultura de presición
+            Sensores y Automatización para la Agricultura de Presición
 .bkg-blue
   .container
     %h1.page-header
@@ -50,8 +50,17 @@
         .h4= "Tº Actual: #{@temperatura}" 
         .h4 Horas Frío Acumuladas 2017: 0h
         .h4 * Información en tiempo real
-    %br    
-    = line_chart @chart_data      
+    %br 
+    .row
+      .col-md-4  
+        %p Sensor 30 cmts profundidad 
+        = line_chart @chart_data1, colors: ["blue"]  
+      .col-md-4  
+        %p Sensor 60 cmts profundidad 
+        = line_chart @chart_data2, colors: ["green"] 
+      .col-md-4  
+        %p Sensor 90 cmts profundidad 
+        = line_chart @chart_data3, colors: ["red"]      
     %br
     %br
     %br
