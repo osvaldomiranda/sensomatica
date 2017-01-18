@@ -1,3 +1,4 @@
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
 .top-background
   .topbar
     .container
@@ -5,37 +6,56 @@
         / =link_to  new_user_session_path, class: 'btn btn-warning' do
         /   %i.glyphicon.glyphicon-log-in
         /   Admin
-        %ul.nav.navbar-nav
-          %li
-            = link_to "" do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Quienes Somos
-          %li
-            = link_to "" do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Servicio
-          %li
-            = link_to "" do
-              %span.iconos>
-                %i.fa.fa-user.fa-fw
-              Contacto    
+        / %ul.nav.navbar-nav
+        /   %li
+        /     = link_to "#" do
+        /       %span.iconos>
+        /         %i.fa.fa-user.fa-fw
+        /       Quienes Somos
+        /   %li
+        /     = link_to "" do
+        /       %span.iconos>
+        /         %i.fa.fa-user.fa-fw
+        /       Servicio
+        /   %li
+        /     = link_to "" do
+        /       %span.iconos>
+        /         %i.fa.fa-user.fa-fw
+        /       Contacto    
               
   .container
+    %br
+    %br
+    %br
+    %br
     .landing_content
       .row
         .col-md-12.text-center.logo-margin
           = image_tag("logo.png")
       .row
         .col-md-12 
-          %h1.landing-title
-            
-          %h3.text-center 
+          %h1 
             Sensores y automatización para la agricultura de presición
-
-
 .bkg-blue
+  .container
+    %h1.page-header
+      Estación Sensores de Humedad y Temperatura
+    .row
+      .col-md-6    
+        %h4 Chillepín, Comuna de Salamanca 
+        %h4 Especie: Nogales
+        %h4 Agricultor: Don Esteban Villalobos  
+        %p Tipo Sensor: humedad de suelo a 30, 60 y 90 cmts de profundidad.
+      .col-md-6
+        .h4= "Tº Actual: #{@temperatura}" 
+        .h4 Horas Frío Acumuladas 2017: 0h
+        .h4 * Información en tiempo real
+    %br    
+    = line_chart @chart_data      
+    %br
+    %br
+    %br
+.suero-bkg-pub
   .container
     .row
       .col-md-12.text-center
@@ -49,34 +69,46 @@
         %br
         %br
         %br  
-.suero-bkg-pub
+.bkg-blue
   .container
     .row
       .col-md-12.text-center
         %br
         %br
         %h1.page-header
-          Quienes Somos
+          Sensomatica
         %h3 
-          Somos un equipo multidiciplinario que convina las áreas de la Electónica, Telecomunicaciones y Sistemas informáticos, para ponerlas a disposición de los agricultores en pos de la correcta toma de desiciones en el manéjo de los cultivos ortofruticolas.
+          Somos un equipo multidiciplinario que combina las áreas de Agronomía, Electónica, Telecomunicaciones y Sistemas Informáticos, para ponerlas a disposición de los agricultores en pos de la correcta toma de desiciones, en el manéjo de los cultivos hortofrutícolas.
         %br
         %br
-        %br
-        %br
-
+    .row
+      .col-md-4.text-center
+        %h3 Osvaldo Miranda S.
+        %h4 Ing.Civil Informática
+        %h4 osvaldo.omiranda@gmail.com
+      .col-md-4.text-center
+        %h3 Ariadna Veas V.
+        %h4 Agronomo
+      .col-md-4.text-center
+        %h3 Victor Ramirez M.
+        %h4 Ing.Civil Electricista
+        %h4 victor.ramirez@gmail.com
+  %br
+  %br
 .bkg-blue
   .container
     .row
       .col-md-2.text-center 
       .col-md-8.text-center   
-        %h3.center_text.white
-          Sensomatica
         .divider_line    
-        %h5.center_text.white
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit
-          %br 
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          
+        %h4 Avenida Nueva Providencia 1881, Oficina 520
+        %h4 Providencia, Santiago
+        %h4 Fono: +56 9 990880320
+        %br
+        %p Copyright &copy; sensomatica.cl 2016
     %br
     %br
-
+    %br
+    %br
+    %br
+    %br
