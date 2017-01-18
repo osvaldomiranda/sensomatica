@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
 
-    @chart_data = Reading.sum(:humedad_origen1).group(:created_at)
+    @chart_data = Reading.select(:created_at, :humedad_origen1).pluck
             
             
 
