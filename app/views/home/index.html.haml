@@ -26,19 +26,26 @@
   .container
     %br
     %br
-    %br
-    %br
     .landing_content
       .row
         .col-md-12.text-center.logo-margin
           = image_tag("logo.png")
       .row
-        .col-md-12 
+        .col-md-12.text-center
           %h1 
             Sensores y Automatización para la Agricultura de Presición
+    %br       
+    .container 
+      .landing_content 
+        .row
+          .col-md-4
+          .col-md-4                  
+            .center
+              = link_to "", class: 'btn btn_pill_small btn-block' do
+                Area Clientes
 .bkg-blue
   .container
-    %h1.page-header
+    %h1.page-header.text-center
       Estación Sensores de Humedad y Temperatura
     .row
       .col-md-6    
