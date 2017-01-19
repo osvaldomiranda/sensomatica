@@ -22,7 +22,10 @@
             = line_chart @chart_data2, colors: ["green"] 
           .col-md-12 
             %p Sensor 90 cms. profundidad 
-            = line_chart @chart_data3, colors: ["red"]   
+            = line_chart @chart_data3, colors: ["red"]  
+          .col-md-12 
+            %p Sensor de Temperatura 
+            = line_chart @chart_data4, colors: ["yellow"]   
 
 .container{:role => "main"}
   .col-md-12
@@ -51,7 +54,7 @@
             %tbody
               - @readings.each do |reading|
                 %tr
-                  %td= reading.created_at
+                  %td= reading.created_at.in_time_zone("Santiago")
                   %td= reading.humedad_origen1
                   %td= reading.humedad_origen2
                   %td= reading.humedad_origen3
