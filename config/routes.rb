@@ -1,4 +1,5 @@
 Sensomatica::Application.routes.draw do
+  devise_for :users
   resources :readings
 
   resources :equipment

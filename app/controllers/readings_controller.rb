@@ -1,10 +1,15 @@
 class ReadingsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_reading, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
-    @readings = Reading.all
+    @readings = Reading.all.order(created_at: :desc).page(params[:page]).per_page(120)
+    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen1)
+    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen2)
+    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen3)          
+
     respond_with(@readings)
   end
 

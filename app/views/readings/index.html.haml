@@ -1,37 +1,59 @@
-%h1 Lecturas
-
-%table
-  %thead
-    %tr
-      %th Equipment
-      %th Humedad origen1
-      %th Humedad origen2
-      %th Humedad origen3
-      %th Temperatura origen
-      %th Humedad1
-      %th Humedad2
-      %th Humedad3
-      %th Temperatura
-      %th
-      %th
-      %th
-
-  %tbody
-    - @readings.each do |reading|
-      %tr
-        %td= reading.equipment
-        %td= reading.humedad_origen1
-        %td= reading.humedad_origen2
-        %td= reading.humedad_origen3
-        %td= reading.temperatura_origen
-        %td= reading.humedad1
-        %td= reading.humedad2
-        %td= reading.humedad3
-        %td= reading.temperatura
-        %td= link_to 'Show', reading
-        %td= link_to 'Edit', edit_reading_path(reading)
-        %td= link_to 'Destroy', reading, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
 %br
+%br
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+      .panel-body
+        .row
+          .col-xs-12
+            %h1
+              Lecturas
+              %span.badge= @readings.count
+        %hr
+        .row
+          .col-md-12  
+            %p Sensor 30 cms. profundidad 
+            = line_chart @chart_data1, colors: ["blue"]  
+          .col-md-12 
+            %p Sensor 60 cms. profundidad 
+            = line_chart @chart_data2, colors: ["green"] 
+          .col-md-12 
+            %p Sensor 90 cms. profundidad 
+            = line_chart @chart_data3, colors: ["red"]   
 
-= link_to 'New Reading', new_reading_path
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Lecturas
+      .panel-body
+        .container-fluid
+
+          %hr
+          = will_paginate @readings, previous_label: h("<  "), next_label: h("  >")
+
+          %table.table.table-striped
+            %thead
+              %tr
+                %th Fecha
+                %th Humedad 30 cms.
+                %th Humedad 60 cms.
+                %th Humedad 90 cms.
+                %th Temperatura
+
+                %th
+                %th
+                %th
+
+            %tbody
+              - @readings.each do |reading|
+                %tr
+                  %td= reading.created_at
+                  %td= reading.humedad_origen1
+                  %td= reading.humedad_origen2
+                  %td= reading.humedad_origen3
+                  %td= reading.temperatura_origen
+
