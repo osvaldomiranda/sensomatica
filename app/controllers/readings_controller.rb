@@ -5,15 +5,33 @@ class ReadingsController < ApplicationController
   respond_to :html
 
   def index
-    @readings = Reading.all.order(created_at: :desc).page(params[:page]).per_page(120)
-    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen1)
-    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen2)
-    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :humedad_origen3)          
+    @readings = Reading.where(codigoe:'AA').order(created_at: :desc).page(params[:page]).per_page(120)
+    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen1)
+    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen2)
+    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen3)          
 
-    @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).pluck(:created_at, :temperatura_origen)          
+    @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :temperatura_origen)          
 
 
     respond_with(@readings)
+  end
+
+  def lab
+    @readings = Reading.where(codigoe:'AB').order(created_at: :desc).page(params[:page]).per_page(120)
+    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AB').pluck(:created_at, :humedad_origen1)
+    @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AB').pluck(:created_at, :temperatura_origen)          
+
+    respond_with(@readings)
+  end
+
+  def toxls
+    equipment = params[:equipment] || 'AA'
+    @reading = Reading.where(codigoe: equipment).last
+
+    respond_to do |format|
+      format.xls 
+    end
+
   end
 
   def show

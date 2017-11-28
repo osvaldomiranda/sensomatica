@@ -14,22 +14,9 @@
               %span.badge= @readings.count
         %hr
         .row
-          .col-md-12
-            %br
-            %br
-            = link_to 'Laboratorio', lab_readings_path, class: 'btn btn-warning'
-            %br
-            %br
-        .row
           .col-md-12  
-            %p Sensor 30 cms. profundidad 
+            %p Sensor Humedad
             = line_chart @chart_data1, colors: ["blue"]  
-          .col-md-12 
-            %p Sensor 60 cms. profundidad 
-            = line_chart @chart_data2, colors: ["green"] 
-          .col-md-12 
-            %p Sensor 90 cms. profundidad 
-            = line_chart @chart_data3, colors: ["red"]  
           .col-md-12 
             %p Sensor de Temperatura 
             = line_chart @chart_data4, colors: ["yellow"]   
@@ -49,9 +36,7 @@
             %thead
               %tr
                 %th Fecha
-                %th Humedad 30 cms.
-                %th Humedad 60 cms.
-                %th Humedad 90 cms.
+                %th Humedad 
                 %th Temperatura
 
                 %th
@@ -61,9 +46,6 @@
             %tbody
               - @readings.each do |reading|
                 %tr
-                  %td= reading.created_at.in_time_zone("Santiago").strftime("%Y/%m/%d %H:%M:%S") 
+                  %td= reading.created_at.in_time_zone("Santiago")
                   %td= reading.humedad_origen1
-                  %td= reading.humedad_origen2
-                  %td= reading.humedad_origen3
                   %td= reading.temperatura_origen
-

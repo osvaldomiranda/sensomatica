@@ -1,6 +1,12 @@
 Sensomatica::Application.routes.draw do
   devise_for :users
-  resources :readings
+  resources :readings, only: :index do
+    collection do
+      get :lab
+      get :toxls
+    end
+  end
+
 
   resources :equipment
 

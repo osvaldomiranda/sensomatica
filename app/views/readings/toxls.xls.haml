@@ -1,0 +1,15 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th Cod Equipo
+      %th Descripcion
+      %th DateTime
+      %th Humedad
+      %th Temperatura
+  %tbody
+    %tr
+      %td AB
+      %td Laboratorio 1
+      %td= @reading.created_at.in_time_zone("Santiago").strftime("%Y/%m/%d %H:%M:%S") 
+      %td= @reading.humedad_origen1
+      %td= @reading.temperatura_origen
