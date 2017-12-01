@@ -1,5 +1,5 @@
 class ReadingsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
   before_action :set_reading, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -25,7 +25,7 @@ class ReadingsController < ApplicationController
   end
 
   def toxls
-    equipment = params[:equipment] || 'AA'
+    equipment = params[:equipment] || 'AB'
     @reading = Reading.where(codigoe: equipment).last
 
     respond_to do |format|
