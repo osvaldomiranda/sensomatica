@@ -36,6 +36,7 @@
             %thead
               %tr
                 %th Fecha
+                %th Sensor 
                 %th Humedad 
                 %th Temperatura
 
@@ -48,4 +49,5 @@
                 %tr
                   %td= reading.created_at.in_time_zone("Santiago")
                   %td= reading.humedad_origen1
+                  %td= reading.humidity_concept1
                   %td= reading.temperatura_origen

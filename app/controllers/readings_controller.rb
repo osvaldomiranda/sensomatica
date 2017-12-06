@@ -17,9 +17,11 @@ class ReadingsController < ApplicationController
   end
 
   def lab
+
     @readings = Reading.where(codigoe:'AB').order(created_at: :desc).page(params[:page]).per_page(120)
     @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AB').pluck(:created_at, :humedad_origen1)
     @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AB').pluck(:created_at, :temperatura_origen)          
+
 
     respond_with(@readings)
   end

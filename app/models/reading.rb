@@ -1,7 +1,7 @@
 class Reading < ActiveRecord::Base
   belongs_to :equipment
 
-  before_save :thermistor
+  #before_save :thermistor
 
   mount_uploader :file, FileReadingUploader
 
@@ -42,7 +42,7 @@ class Reading < ActiveRecord::Base
     puts self.temperatura_origen
     puts "**********************"
     rawADC = self.temperatura_origen
-    vo=rawADC*(5/4095)
+    vo=rawADC*(5.0/4095)
     t = Math::log(10000*(5/vo-1))
     temperature = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * t * t ))* t )
     celsius = temperature - 273.15
