@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Cod Equipo</Data></Cell>
+        <Cell><Data ss:Type="String">Descripcion</Data></Cell>
+        <Cell><Data ss:Type="String">DateTime</Data></Cell>
+        <Cell><Data ss:Type="String">Humedad</Data></Cell>
+        <Cell><Data ss:Type="String">Temperatura</Data></Cell>
+      </Row>
+      <Row>
+        <Cell><Data ss:Type="String">AB </Data></Cell>
+        <Cell><Data ss:Type="String">Laboratorio 1 </Data></Cell>
+        <Cell><Data ss:Type="String"><%= @reading.created_at.in_time_zone("Santiago").strftime("%Y/%m/%d %H:%M:%S") %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @reading.humedad_origen1 %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= @reading.temperatura_origen %></Data></Cell>
+      </Row>
+    </Table>
+  </Worksheet>
+</Workbook>
