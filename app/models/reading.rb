@@ -43,18 +43,19 @@ class Reading < ActiveRecord::Base
     vo=rawADC*(5.0/4095)
     t = Math::log(10000*(5/vo-1))
     temperature = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * t * t ))* t )
-    celsius = temperature - 273.15
+    celsius = temperature - 268.15
 
     self.temperatura_origen = celsius
 
     if(self.humedad_origen1<300)
       self.humidity_concept1 = "Sendor en Suelo Seco"
-    end
+    else
       if(self.humedad_origen1<700)
         self.humidity_concept1 = "Sendor en Suelo Humedo"
       else
         self.humidity_concept1 = "Sendor en Agua"
       end
     end
+
   end 
 end

@@ -1,27 +1,16 @@
-= javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+
 .top-background
   .topbar
     .container
       .pull-right
-        / =link_to  new_user_session_path, class: 'btn btn-warning' do
-        /   %i.glyphicon.glyphicon-log-in
-        /   Admin
-        / %ul.nav.navbar-nav
-        /   %li
-        /     = link_to "#" do
-        /       %span.iconos>
-        /         %i.fa.fa-user.fa-fw
-        /       Quienes Somos
-        /   %li
-        /     = link_to "" do
-        /       %span.iconos>
-        /         %i.fa.fa-user.fa-fw
-        /       Servicio
-        /   %li
-        /     = link_to "" do
-        /       %span.iconos>
-        /         %i.fa.fa-user.fa-fw
-        /       Contacto    
+        =link_to  "Login", new_user_session_path, class: 'btn btn-warning' 
+        %ul.nav.navbar-nav
+          %li
+            = link_to "Equipamiento", "" 
+          %li
+            = link_to "Eventos Aastronómicos", ""           
+          %li
+            = link_to "Contacto", ""   
               
   .container
     %br
@@ -29,45 +18,50 @@
     .landing_content
       .row
         .col-md-12.text-center.logo-margin
-          = image_tag("logo.png")
+          %h1.page-header AtacamaScope
+          / = image_tag("logo.png")
       .row
-        .col-md-12.text-center
+        .col-md-1
+        .col-md-11
           %h1 
-            Sensores y Automatización para la Agricultura de Precisión
+            Opera un observatorio astronómico remoto
+          %h2
+            En los cielos mas limpios del mundo  
     %br       
     .container 
       .landing_content 
         .row
           .col-md-4
           .col-md-4                  
-            .center
-              = link_to readings_path, class: 'btn btn_pill_small btn-block' do
-                Area Clientes
+            = link_to readings_path, class: 'btn btn_pill btn-block' do
+              Comienza ahora
+    %br          
 .bkg-blue
   .container
     %h1.page-header.text-center
-      Estación Sensores de Humedad y Temperatura
+      Unos Simples Pasos
     .row
-      .col-md-6    
-        %h4 Chillepín, Comuna de Salamanca 
-        %h4 Especie: Nogales
-        %h4 Agricultor: Esteban Villalobos  
-        %p Tipo Sensor: humedad de suelo a 30, 60 y 90 cms. de profundidad.
-      .col-md-6
-        .h4= "Tº Actual: #{@temperatura}" 
-        .h4 Horas Frío Acumuladas 2017: 0h
-        .h4 * Información en tiempo real
+      .col-md-3.text-center  
+        = image_tag("telescope48.png")
+      .col-md-3.text-center
+        = image_tag("search48.png")
+      .col-md-3.text-center
+        = image_tag("camera48.png")
+      .col-md-3.text-center    
+        = image_tag("cloud48.png")
     %br 
     .row
-      .col-md-4  
-        %p Sensor 30 cms. profundidad 
-        = line_chart @chart_data1, colors: ["blue"]  
-      .col-md-4  
-        %p Sensor 60 cms. profundidad 
-        = line_chart @chart_data2, colors: ["green"] 
-      .col-md-4  
-        %p Sensor 90 cms. profundidad 
-        = line_chart @chart_data3, colors: ["red"]      
+      .col-md-3.text-center  
+        %h4 Elige y reserva tu equipo
+      .col-md-3.text-center  
+        %h4 Busca el objeto astronómico de tu interes en nuestra base de datos
+      .col-md-3  
+        %h4 Elige los parametros de la Foto
+        %h4 - Tiempo Exposición
+        %h4 - Sensibilidad del sensor
+      .col-md-3.text-center  
+        %h4 Dispara y obten tu foto en alta calidad
+             
     %br
     %br
     %br
@@ -78,13 +72,39 @@
         %br
         %br
         %h1.page-header
-          Servicio
-        %h3 
-          Sensores de humedad, Temperatura, Evapotranspiración, Crecimiento, Estados Fenológicos y Monitoreo vía imágenes de alta resolución, desplegadas online y en tiempo real.
-        %br
-        %br
-        %br
-        %br  
+          ¿ Por que usar AtacamaScope ?
+    .row
+      .col-md-6.text-center
+        = image_tag("clouds48.png")
+        %h4 Tenemos los cielos mas limpios del mundo
+      .col-md-6.text-center
+        = image_tag("telescope48.png")
+        %h4 Sin comprar equipos de alto costo
+    %br
+    %br
+    .row
+      .col-md-6.text-center
+        = image_tag("globe48.png")
+        %h4 Desde cualquier parte del mundo
+      .col-md-6.text-center 
+        = image_tag("emoticon48.png")
+        %h4 Sin setear o ajustar complicados equipos de observación
+    %br
+    %br    
+    .row
+      .col-md-6.text-center
+        = image_tag("money48.png")
+        %h4 Sin costos de viajes, alojamientos, etc
+      .col-md-6.text-center 
+        = image_tag("moon48.png")
+        %h4 Busca tu lugar del cielo, Dispara, Baja tu foto
+    %br
+    %br
+    %br
+    %br        
+
+            
+
 .bkg-blue
   .container
     .row
@@ -92,9 +112,20 @@
         %br
         %br
         %h1.page-header
-          Sensomática
-        %h3 
-          Somos un equipo multidisciplinario que combina las áreas de Agronomía, Electrónica, Telecomunicaciones y Sistemas Informáticos, para ponerlas a disposición de los agricultores en pos de la correcta toma de decisiones, en el manejo de los cultivos hortofrutícolas.
+          Galería de Fotos
+    .row      
+      .col-md-4.text-center 
+        = image_tag("foto1.png")
+        %p Telescopio 300mm f/4.5
+        %p 5min Exp. iso:3500
+      .col-md-4.text-center 
+        = image_tag("foto2.png")
+        %p Telescopio 300mm f/4.5
+        %p 5min Exp. iso:3500
+      .col-md-4.text-center 
+        = image_tag("foto3.png")  
+        %p Telescopio 300mm f/4.5
+        %p 5min Exp. iso:3500  
         %br
         %br
     / .row
@@ -117,12 +148,12 @@
       .col-md-2.text-center 
       .col-md-8.text-center   
         .divider_line    
-        %h4 Avenida Nueva Providencia 1881, Oficina 520
-        %h4 Providencia, Santiago
-        %h4 Fono: +56 990880320
-        %h4 osvaldo.miranda@indi.cl
+        %h4 AtacamaScope, dirección San Pedro de Atacama Chile
+        %h4 emailcontacto@atacamascope.com
+        %h4 fono: +569997667238
+        %h4 osvaldo.miranda@atacamascope.com
         %br
-        %p Copyright &copy; sensomatica.cl, indi.cl 2016
+        %p Copyright &copy; Incluye todas las fotos:  atacamascope.com 2018
     %br
     %br
     %br

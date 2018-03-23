@@ -1,16 +1,16 @@
 class ReadingsController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_reading, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
 
   def index
     @readings = Reading.where(codigoe:'AA').order(created_at: :desc).page(params[:page]).per_page(120)
-    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen1)
-    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen2)
-    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :humedad_origen3)          
+    @chart_data1 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').limit(200).pluck(:created_at, :humedad_origen1)
+    @chart_data2 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').limit(200).pluck(:created_at, :humedad_origen2)
+    @chart_data3 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').limit(200).pluck(:created_at, :humedad_origen3)          
 
-    @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').pluck(:created_at, :temperatura_origen)          
+    @chart_data4 = Reading.where("EXTRACT(MINUTE FROM created_at)=?",0).where(codigoe:'AA').limit(200).pluck(:created_at, :temperatura_origen)          
 
 
     respond_with(@readings)
