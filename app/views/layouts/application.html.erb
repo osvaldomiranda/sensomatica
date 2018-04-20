@@ -54,7 +54,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 <% end %>
-
+<% if current_user.present? %>
+<br>
+<br>
+<br>
+<% end %>
 <%= yield %>
 
 </body>

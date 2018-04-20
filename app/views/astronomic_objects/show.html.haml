@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @astronomic_object.name
+%p
+  %b Catalog:
+  = @astronomic_object.catalog
+%p
+  %b Type object:
+  = @astronomic_object.type_object
+%p
+  %b Ra:
+  = @astronomic_object.ra
+%p
+  %b Dec:
+  = @astronomic_object.dec
+%p
+  %b Constellation:
+  = @astronomic_object.constellation
+%p
+  %b Bmag:
+  = @astronomic_object.bmag
+%p
+  %b Hubble:
+  = @astronomic_object.hubble
+
+= link_to 'Edit', edit_astronomic_object_path(@astronomic_object)
+\|
+= link_to 'Back', astronomic_objects_path

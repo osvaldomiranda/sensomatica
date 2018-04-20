@@ -1,4 +1,7 @@
 Sensomatica::Application.routes.draw do
+  get "dashboard/index"
+  resources :astronomic_objects
+
   devise_for :users
   resources :readings, only: :index do
     collection do

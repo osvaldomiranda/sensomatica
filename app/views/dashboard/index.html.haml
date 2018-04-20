@@ -1,0 +1,96 @@
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title MI PERFIL
+      .panel-body
+        .row
+          .col-md-2
+            %a.thumbnail{:href => "", data: { modal: true }}
+              - if current_user.picture.present?
+                %img.img-circle{:alt => "...", :src =>"#{current_user.picture_url}"}
+              - else  
+                %img.img-circle{:alt => "...", :src => "http://placehold.it/150x150"}
+
+          .col-md-10
+            .col-md-4
+              %h4 Puntos Disponibles 200
+            .col-md-3
+              = link_to "", class: 'btn btn_pill_small btn-block' do
+                Comprar puntos
+            .col-md-2  
+              = link_to "", class: 'btn btn_pill_small btn-block' do
+                Reservar
+            .col-md-2  
+              = link_to "", class: 'btn btn_pill_small btn-block' do
+                Ir a Control
+          .col-md-2 
+            = link_to "", class: 'btn btn-warning' do
+              ="#{current_user.email}"      
+        .row        
+          .container
+            .col-md-11
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title Mis Reservas
+                .panel-body        
+                  .row
+
+                    %table.table.table-striped
+                      %thead
+                        %tr
+                          %th
+                          %th Telescopio
+                          %th Tiempo Reservado
+                          %th Fecha/Hora 
+                          %th 
+                          %th
+                          %th
+                      %tbody
+                        %tr
+                          %td             
+                            %img{:alt => "...", :src => "http://placehold.it/80x80"}
+                          %td Telescopio 1
+                          %td 2 Horas
+                          %td 28/04/2017 23:00
+                          %td= link_to "Ir a Control" ,"", class: 'btn btn-sm btn-warning' 
+                          %td= link_to "Cambiar" ,"", class: 'btn btn-sm btn-warning' 
+                          %td= link_to "Eliminar","", class: 'btn btn-sm btn-warning'   
+        .row        
+          .container
+            .col-md-11
+              .panel.panel-default
+                .panel-heading
+                  %h3.panel-title Mis Fotos
+                .panel-body        
+                  .row                  
+                    %table.table.table-striped
+                      %thead
+                      %tbody
+                        %tr
+                          %td
+                            = image_tag("foto1small.png")
+                          %td 
+                            %p Telescopio 1,  300mm f/4.5, Cámara Canon I5  
+                            %p Tiempo de exposición   5min 
+                            %p iso:3500
+                          %td
+                            = image_tag("clouddownload32.png")
+                          %td
+                            = image_tag("sharethis32.png")      
+                        %tr
+                          %td
+                            = image_tag("foto1small.png")
+                          %td 
+                            %p Telescopio 1,  300mm f/4.5, Cámara Canon I5  
+                            %p Tiempo de exposición   5min 
+                            %p iso:3500
+                          %td
+                            = image_tag("clouddownload32.png")
+                          %td
+                            = image_tag("sharethis32.png")  
+
+                  
+
+        

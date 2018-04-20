@@ -1,0 +1,15 @@
+= simple_form_for(@astronomic_object) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :catalog
+    = f.input :type_object
+    = f.input :ra
+    = f.input :dec
+    = f.input :constellation
+    = f.input :bmag
+    = f.input :hubble
+
+  .form-actions
+    = f.button :submit

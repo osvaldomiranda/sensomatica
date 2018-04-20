@@ -1,0 +1,35 @@
+%h1 Listing astronomic_objects
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Catalog
+      %th Type object
+      %th Ra
+      %th Dec
+      %th Constellation
+      %th Bmag
+      %th Hubble
+      %th
+      %th
+      %th
+
+  %tbody
+    - @astronomic_objects.each do |astronomic_object|
+      %tr
+        %td= astronomic_object.name
+        %td= astronomic_object.catalog
+        %td= astronomic_object.type_object
+        %td= astronomic_object.ra
+        %td= astronomic_object.dec
+        %td= astronomic_object.constellation
+        %td= astronomic_object.bmag
+        %td= astronomic_object.hubble
+        %td= link_to 'Show', astronomic_object
+        %td= link_to 'Edit', edit_astronomic_object_path(astronomic_object)
+        %td= link_to 'Destroy', astronomic_object, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Astronomic object', new_astronomic_object_path

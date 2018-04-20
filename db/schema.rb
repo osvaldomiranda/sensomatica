@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206121406) do
+ActiveRecord::Schema.define(version: 20180411195046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "astronomic_objects", force: true do |t|
+    t.string   "name"
+    t.string   "catalog"
+    t.string   "type_object"
+    t.string   "ra"
+    t.string   "dec"
+    t.string   "constellation"
+    t.float    "bmag"
+    t.string   "hubble"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "equipment", force: true do |t|
     t.string   "codigo"
@@ -58,6 +71,8 @@ ActiveRecord::Schema.define(version: 20171206121406) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "picture"
+    t.string   "fullname"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
