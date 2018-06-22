@@ -1,0 +1,9 @@
+= simple_form_for(@photo_session) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.association :equipment
+
+  .form-actions
+    = f.button :submit

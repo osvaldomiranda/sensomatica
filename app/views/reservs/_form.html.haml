@@ -1,0 +1,11 @@
+= simple_form_for(@reserv) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.input :day
+    = f.association :equipment
+    = f.input :hours
+
+  .form-actions
+    = f.button :submit

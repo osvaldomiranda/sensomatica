@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411195046) do
+ActiveRecord::Schema.define(version: 20180622205405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20180411195046) do
     t.datetime "updated_at"
   end
 
+  create_table "commands", force: true do |t|
+    t.string   "command"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status"
+    t.float    "ar"
+    t.float    "dec"
+    t.integer  "exptime"
+    t.integer  "iso"
+  end
+
   create_table "equipment", force: true do |t|
     t.string   "codigo"
     t.string   "nombre"
@@ -37,6 +49,27 @@ ActiveRecord::Schema.define(version: 20180411195046) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "photo_sessions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photo_sessions", ["equipment_id"], name: "index_photo_sessions_on_equipment_id", using: :btree
+  add_index "photo_sessions", ["user_id"], name: "index_photo_sessions_on_user_id", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "equipment_id"
+    t.string   "photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["equipment_id"], name: "index_photos_on_equipment_id", using: :btree
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "readings", force: true do |t|
     t.integer  "equipment_id"
@@ -57,6 +90,18 @@ ActiveRecord::Schema.define(version: 20180411195046) do
   end
 
   add_index "readings", ["equipment_id"], name: "index_readings_on_equipment_id", using: :btree
+
+  create_table "reservs", force: true do |t|
+    t.integer  "user_id"
+    t.date     "day"
+    t.integer  "equipment_id"
+    t.integer  "hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservs", ["equipment_id"], name: "index_reservs_on_equipment_id", using: :btree
+  add_index "reservs", ["user_id"], name: "index_reservs_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

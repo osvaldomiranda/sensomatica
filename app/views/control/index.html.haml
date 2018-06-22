@@ -1,0 +1,88 @@
+%br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Interfaz de Control
+      .panel-body
+        .row
+          .col-md-4
+            %a.thumbnail{:href => "", data: { modal: true }}
+              - if current_user.picture.present?
+                %img.img-circle{:alt => "...", :src =>"#{current_user.picture_url}"}
+              - else  
+                %img.img-circle{:alt => "...", :src => "http://placehold.it/300x300"}
+                  %br  
+          .col-md-8.text-center
+            .form-inline
+              = label_tag :filter_const, "CONSTELACION"
+              = select_tag :filter_const, options_for_select(AstronomicObject.const_for_select, @const_name), prompt: @const_name,class: "form-control"
+            %h4
+              Objetos:
+              %span.badge= @objects.count
+       
+            .panel.panel-default
+              .panel-body
+                %table.table.table-striped
+                  %thead
+                    %tr
+                      %th Nombre
+                      %th Catalogo
+                      %th Tipo
+                      %th Magnitud
+                      %th Seleccionar
+                  %tbody
+                    - @objects.each do |object|
+                      %tr
+                        %td= object.name 
+                        %td= object.catalog
+                        %td= object.type_object
+                        %td= object.bmag
+                        %td= link_to "Usar","/", class: 'btn btn-warning btn-xs'
+        .row
+          .col-md-12
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title Objeto
+              .panel-body             
+                %h3= @object_selected   
+        .row
+          .col-md-6
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title Montura
+              .panel-body 
+                = simple_form_for( :mount, url: control_index_path ) do |f|
+                  .form-inputs
+                    %fieldset
+                      .form-group
+                        = f.input :const, as: :hidden, input_html: {value: @const_name}
+                      .form-group
+                        = f.input :coord_ar, input_html: {value: number_with_precision(@ac_selected, precision: 2) }
+                      .form-group
+                        = f.input :coord_dec, input_html: {value: number_with_precision(@dec_selected, precision: 2) }
+                  .form-actions
+                    = f.button :submit, "Trakear", class: 'btn btn_pill_small btn-block'
+
+          .col-md-6
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title Cámara
+              .panel-body 
+                = simple_form_for( :camera, url: control_index_path ) do |f|
+                  .form-inputs
+                    %fieldset
+                      .form-group
+                        = f.input :const, as: :hidden, input_html: {value: @const_name}
+                      .form-group
+                        = f.input :camera_iso, collection: AstronomicObject.camera_iso, selected: '1600'
+                      .form-group
+                        = f.input :exp_time, collection: AstronomicObject.camera_time, selected: '5 Seg'
+                  .form-actions
+                    = f.button :submit, "Obtener Foto", class: 'btn btn_pill_small btn-block'
+
+
+
+
+
+

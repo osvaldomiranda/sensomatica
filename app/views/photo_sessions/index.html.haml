@@ -1,0 +1,23 @@
+%h1 Listing photo_sessions
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Equipment
+      %th
+      %th
+      %th
+
+  %tbody
+    - @photo_sessions.each do |photo_session|
+      %tr
+        %td= photo_session.user
+        %td= photo_session.equipment
+        %td= link_to 'Show', photo_session
+        %td= link_to 'Edit', edit_photo_session_path(photo_session)
+        %td= link_to 'Destroy', photo_session, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Photo session', new_photo_session_path

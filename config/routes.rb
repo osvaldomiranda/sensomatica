@@ -1,5 +1,20 @@
 Sensomatica::Application.routes.draw do
+  
+  
+  resources :commands
+
+  resources :photos
+
+  resources :photo_sessions
+
+  resources :reservs
+
+  get "control/index"
+  post "control/index"
+
+
   get "dashboard/index"
+
   resources :astronomic_objects
 
   devise_for :users
@@ -21,6 +36,11 @@ Sensomatica::Application.routes.draw do
       resources :readings do
         collection do
           post :upload
+        end
+      end
+      resources :command do
+        collection do
+          get :getcommand
         end
       end
     end

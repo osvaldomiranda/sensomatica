@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @photo_session.user
+%p
+  %b Equipment:
+  = @photo_session.equipment
+
+= link_to 'Edit', edit_photo_session_path(@photo_session)
+\|
+= link_to 'Back', photo_sessions_path

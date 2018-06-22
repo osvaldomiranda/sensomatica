@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @reserv.user
+%p
+  %b Day:
+  = @reserv.day
+%p
+  %b Equipment:
+  = @reserv.equipment
+%p
+  %b Hours:
+  = @reserv.hours
+
+= link_to 'Edit', edit_reserv_path(@reserv)
+\|
+= link_to 'Back', reservs_path

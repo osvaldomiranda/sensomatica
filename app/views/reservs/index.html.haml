@@ -1,0 +1,27 @@
+%h1 Listing reservs
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Day
+      %th Equipment
+      %th Hours
+      %th
+      %th
+      %th
+
+  %tbody
+    - @reservs.each do |reserv|
+      %tr
+        %td= reserv.user
+        %td= reserv.day
+        %td= reserv.equipment
+        %td= reserv.hours
+        %td= link_to 'Show', reserv
+        %td= link_to 'Edit', edit_reserv_path(reserv)
+        %td= link_to 'Destroy', reserv, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Reserv', new_reserv_path
