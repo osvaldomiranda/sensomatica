@@ -14,5 +14,7 @@ class Api::V1::CommandController < ApplicationController
     else
       render :json=> {command: " "} , :status => :ok
     end     
+    command.status = 'OK'
+    command.save
   end
 end

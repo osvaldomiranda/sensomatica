@@ -43,6 +43,11 @@ Sensomatica::Application.routes.draw do
           get :getcommand
         end
       end
+      resources :photos do
+        collection do
+          post :upload
+        end
+      end
     end
   end
 end

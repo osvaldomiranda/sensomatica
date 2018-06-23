@@ -7,12 +7,12 @@
       .panel-body
         .row
           .col-md-4
-            %a.thumbnail{:href => "", data: { modal: true }}
-              - if current_user.picture.present?
-                %img.img-circle{:alt => "...", :src =>"#{current_user.picture_url}"}
-              - else  
-                %img.img-circle{:alt => "...", :src => "http://placehold.it/300x300"}
-                  %br  
+            
+            - if current_user.photos.last.present?
+              = link_to image_tag(current_user.photos.last.photo_url, :height => "320", :width => "320"), current_user.photos.last.photo_url, target: :_bl
+            - else  
+              %img{:alt => "...", :src => "http://placehold.it/300x300"}
+            %br  
           .col-md-8.text-center
             .form-inline
               = label_tag :filter_const, "CONSTELACION"
@@ -80,9 +80,14 @@
                         = f.input :exp_time, collection: AstronomicObject.camera_time, selected: '5 Seg'
                   .form-actions
                     = f.button :submit, "Obtener Foto", class: 'btn btn_pill_small btn-block'
-
-
-
-
-
-
+        .row
+          .col-md-12          
+            .panel.panel-default
+              .panel-body
+                - current_user.photos.each do |object|
+                  .row
+                    .col-md-4
+                      - if object.photo.present?
+                        = link_to image_tag(object.photo_url, :height => "100", :width => "100"), object.photo_url, target: :_blank
+                    .col-md-4 
+                      %h4= object.created_at
