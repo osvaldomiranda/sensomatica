@@ -27,7 +27,7 @@ class ControlController < ApplicationController
       command.iso = params[:camera][:camera_iso] 
       command.save
     end
-
+    
     if params[:mount].present?
       # "coord_ar"=>" 04:46:25.76", "coord_dec"=>"+03:30:20.0"
       command = Command.new
