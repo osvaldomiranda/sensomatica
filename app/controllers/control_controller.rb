@@ -38,14 +38,43 @@ class ControlController < ApplicationController
       command.save
     end
 
-
-
     @objects = AstronomicObject.with_const(@const_name).order(:name) 
     object = @objects.first
+    if params[:object].present?
+      object = AstronomicObject.where(id: params[:object]).first
+    end  
 
-    @object_selected = "Objeto: #{object.name}   Constelacion:#{object.constellation}   Tipo:#{object.type_object}    AR:#{object.coord_ar} DEC:#{object.sign_dec + object.coord_dec.to_s}"
-    @ac_selected = object.coord_ar
-    @dec_selected = object.sign_dec + object.coord_dec.to_s
+    @object_selected = object
+
+
+
+    if object.catalog == 'SolarSistem'
+      coords = `python ./planeta.py -o #{object.name} -d #{DateTime.now.strftime("%Y/%m/%dt%H:%M:%S") }`
+      
+      object.ra = coords.split[0]
+      object.dec = coords.split[1]
+
+       h_ra = object.ra.split(':')[0].to_f
+       m_ra = object.ra.split(':')[1].to_f
+       s_ra = object.ra.split(':')[2].to_f
+
+       h_dec = object.dec.split(':')[0].to_f
+       m_dec = object.dec.split(':')[1].to_f
+       s_dec = object.dec.split(':')[2].to_f
+
+       if h_dec < 0.0
+        sign = '-'
+        h_dec = h_dec * -1
+       else
+        sign = '+'  
+       end
+
+      @ac_selected  = (h_ra + (m_ra/60) + (s_ra/3600)).to_s
+      @dec_selected = sign + (h_dec + (m_dec/60) + (s_dec/3600)).to_s
+    else  
+      @ac_selected = object.coord_ar
+      @dec_selected = object.sign_dec + object.coord_dec.to_s
+    end  
     respond_with(@objects)
   end
 end

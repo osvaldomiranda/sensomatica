@@ -20,17 +20,29 @@ class AstronomicObject < ActiveRecord::Base
     ar = self.ra
     dec = self.dec
 
-    h_ar = ar[2..3].to_i
-    m_ar = ar[5..6].to_f
-    s_ar = ar[8..15].to_f
+    if self.catalog=='MESSIER'
+      h_ar = ar.split[0].to_f
+      m_ar = ar.split[1].to_f
+      
+      sign = dec[0..0]
+      h_dec = dec[1..2].to_f
+      m_dec = dec[5..6].to_f
+      
+      coord_ar = h_ar + (m_ar/60) 
+      coord_dec = h_dec + (m_dec/60) 
+    else
+      h_ar = ar[2..3].to_f
+      m_ar = ar[5..6].to_f
+      s_ar = ar[8..15].to_f
 
-    sign = dec[0..0]
-    h_dec = dec[1..2].to_i
-    m_dec = dec[4..5].to_f
-    s_dec = dec[7..20].to_f
+      sign = dec[0..0]
+      h_dec = dec[1..2].to_f
+      m_dec = dec[4..5].to_f
+      s_dec = dec[7..20].to_f
 
-    coord_ar = h_ar + (m_ar/60) + (s_ar/3600)
-    coord_dec = h_dec + (m_dec/60) + (s_dec/3600)
+      coord_ar = h_ar + (m_ar/60) + (s_ar/3600)
+      coord_dec = h_dec + (m_dec/60) + (s_dec/3600)
+    end  
 
     self.coord_dec = coord_dec
     self.coord_ar = coord_ar
@@ -38,5 +50,6 @@ class AstronomicObject < ActiveRecord::Base
 
     self.save    
   end  
+
 
 end
