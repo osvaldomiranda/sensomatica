@@ -1,0 +1,9 @@
+App.web_notifications = App.cable.subscriptions.create "WebNotificationsChannel",
+  connected: ->
+   # $('#messages').append "<p>conectado</p>"
+
+  disconnected: ->
+    # Called when the subscription has been terminated by the server
+
+  received: (data) ->
+    $('#messages').append data['message']

@@ -42,6 +42,6 @@ class PhotoSessionsController < ApplicationController
     end
 
     def photo_session_params
-      params.require(:photo_session).permit(:user_id, :equipment_id)
+      params.require(:photo_session).permit([:user_id, :equipment_id]).to_h
     end
 end

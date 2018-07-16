@@ -3,13 +3,14 @@
   .col-md-12
     .panel.panel-default
       .panel-heading
-        %h3.panel-title Interfaz de Control
+        %h3.panel-title Control Interface
       .panel-body
         .row
           .col-md-4
-            
+                       
             - if current_user.photos.last.present?
-              = link_to image_tag(current_user.photos.last.photo_url, :height => "320", :width => "320"), current_user.photos.last.photo_url, target: :_bl
+              %div{:id => "last_image"} 
+                %img{:alt => "..", :height => "300", :src => "#{current_user.photos.last.photo_url}", :width => "300"}
             - else  
               %img{:alt => "...", :src => "http://placehold.it/300x300"}
             %br  
@@ -20,6 +21,9 @@
             .form-inline
               = label_tag :filter_const, "CONSTELACION"
               = select_tag :filter_const, options_for_select(AstronomicObject.const_for_select, @const_name), prompt: @const_name,class: "form-control"
+           
+              = label_tag :filter_catalog, "CATALOG"
+              = select_tag :filter_catalog, options_for_select(AstronomicObject.catalog_for_select, @catalog), prompt: @catalog,class: "form-control"
               %span.badge= @objects.count
        
             .panel.panel-default
@@ -27,67 +31,131 @@
                 %table.table.table-striped
                   %thead
                     %tr
-                      %th Nombre
-                      %th Catalogo
-                      %th Tipo
-                      %th Magnitud
-                      %th Seleccionar
+                      %th Name
+                      %th Catalog
+                      %th Type
+                      %th Magn
+                      %th Select
                   %tbody
                     - @objects.each do |object|
                       %tr
                         %td= object.name 
                         %td= object.catalog
-                        %td= object.type_object
+                        %td= object.type_name
                         %td= object.bmag
-                        %td= link_to "Usar", control_index_path(object: object, const: @const_name), class: 'btn btn-warning btn-xs'
+                        %td= link_to "Use", control_index_path(object: object, const: @const_name, catalog: @catalog), class: 'btn btn-warning btn-xs'
         .row
           .col-md-12
             .panel.panel-default
               .panel-heading
-                %h3.panel-title Objeto
+                %h3.panel-title Astronomic Object
               .panel-body        
                 .row
-                  .col-md-6     
+                  .col-md-4     
                     %h3= @object_selected.name 
-                    %h2= @object_selected.colloquial_name 
+                    %h4= @object_selected.colloquial_name 
                     %h4= "Constellation: #{@object_selected.constellation}"
-                  .col-md-6 
+                  .col-md-2 
                     %h4=  "AR: #{@object_selected.ra} "
-                    %h4=  "DEC: #{@object_selected.dec} " 
+                    %h4=  "DEC: #{@object_selected.dec} "
+                  .col-md-5
+                    %hp Sistem Status
+                    .panel.panel-default
+                      .panel-body   
+                        %div{:id => "messages"} 
         .row
-          .col-md-6
+          .col-md-4
             .panel.panel-default
               .panel-heading
-                %h3.panel-title Montura
+                %h3.panel-title Mount
               .panel-body 
                 = simple_form_for( :mount, url: control_index_path ) do |f|
                   .form-inputs
                     %fieldset
                       .form-group
                         = f.input :const, as: :hidden, input_html: {value: @const_name}
-                      .form-group
-                        = f.input :coord_ar, input_html: {value: number_with_precision(@ac_selected, precision: 2) }
-                      .form-group
-                        = f.input :coord_dec, input_html: {value: number_with_precision(@dec_selected, precision: 2) }
-                  .form-actions
-                    = f.button :submit, "Trakear", class: 'btn btn_pill_small btn-block'
+                        = f.input :catalog, as: :hidden, input_html: {value: @catalog}
+                        = f.input :object, as: :hidden, input_html: {value: @object_selected}
 
-          .col-md-6
+                        .row
+                          .col-sm-3
+                            %p AR          
+                          .col-sm-3
+                            = f.input :coord_ar, label: false, input_html: {value: number_with_precision(@ac_selected, precision: 2), :size => 10 }
+                          .col-sm-3
+                          .col-sm-3
+
+                      .form-group
+                        .row
+                          .col-sm-3
+                            %p DEC          
+                          .col-sm-3
+                            = f.input :coord_dec, label: false, input_html: {value: number_with_precision(@dec_selected, precision: 2), :size => 10 }
+                  .form-actions
+                    = f.button :submit, "Move", class: 'btn btn_pill_small btn-block'
+
+          .col-md-4
             .panel.panel-default
               .panel-heading
-                %h3.panel-title Cámara
+                %h3.panel-title Mount
+              .panel-body 
+                = simple_form_for( :move, url: control_index_path ) do |f|
+                  .form-inputs
+                    %fieldset
+                      .form-group
+                        = f.input :const, as: :hidden, input_html: {value: @const_name}
+                        = f.input :catalog, as: :hidden, input_html: {value: @catalog}
+                        = f.input :object, as: :hidden, input_html: {value: @object_selected}
+                        .row
+                          .col-sm-1
+                          .col-sm-10.text-center
+                            = f.input :move_un, label: false, collection: AstronomicObject.move_for_select, selected: '1m' 
+                          .col-sm-1 
+                      .form-actions     
+                        .row
+                          .col-sm-1
+                          .col-sm-10.text-center
+                            = f.button :submit, "Dec +", class: 'btn btn_pill_small btn-block'
+                          .col-sm-1
+                        .row    
+                          .col-sm-1
+                          .col-sm-10.btn-group
+                            = f.button :submit, "AR +", class: 'btn btn_pill_small pull-left'
+                            = f.button :submit, "AR -", class: 'btn btn_pill_small pull-right'
+                          .col-sm-1
+                        .row
+                          .col-sm-1    
+                          .col-sm-10
+                            = f.button :submit, "Dec -", class: 'btn btn_pill_small btn-block' 
+                          .col-sm-1s 
+
+          .col-md-4
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title Camera
               .panel-body 
                 = simple_form_for( :camera, url: control_index_path ) do |f|
                   .form-inputs
                     %fieldset
                       .form-group
                         = f.input :const, as: :hidden, input_html: {value: @const_name}
+                        = f.input :catalog, as: :hidden, input_html: {value: @catalog}
+                        = f.input :object, as: :hidden, input_html: {value: @object_selected}
                       .form-group
-                        = f.input :camera_iso, collection: AstronomicObject.camera_iso, selected: '1600'
-                      .form-group
-                        = f.input :exp_time, collection: AstronomicObject.camera_time, selected: '5 Seg'
+                        .row
+                          .col-sm-4
+                            %p ISO:
+                          .col-sm-4
+                            = f.input :camera_iso, label: false, collection: AstronomicObject.camera_iso, selected: '1600' 
+                          .col-sm-4  
+                        .row
+                          .col-sm-4
+                            %p Exp. Time:
+                          .col-sm-4
+                            = f.input :exp_time, label: false, collection: AstronomicObject.camera_time, selected: '5 Seg'
+                          .col-sm-4  
                   .form-actions
-                    = f.button :submit, "Obtener Foto", class: 'btn btn_pill_small btn-block'
+                    = f.button :submit, "Get Photo", class: 'btn btn_pill_small btn-block'
         .row
           .col-md-12          
             .panel.panel-default
@@ -102,3 +170,6 @@
                     %br
                     %br
                     %br  
+
+
+

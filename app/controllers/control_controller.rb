@@ -1,18 +1,27 @@
 class ControlController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   respond_to :html
 
   def index
+    @chatroom = Chatroom.first
     if params[:const].present?
       @const_name = params[:const]
+      @catalog = params[:catalog]
     else
       if params[:mount].present?
         @const_name = params[:mount][:const]
+        @catalog = params[:mount][:catalog]
       else
         if params[:camera].present?
           @const_name = params[:camera][:const]
+          @catalog = params[:camera][:catalog]
         else  
           @const_name = 'Ori'
+          if params[:catalog].present?
+            @catalog = params[:catalog]
+          else  
+            @catalog = 'NGC'
+          end
         end  
       end
     end    
@@ -38,15 +47,14 @@ class ControlController < ApplicationController
       command.save
     end
 
-    @objects = AstronomicObject.with_const(@const_name).order(:name) 
+    @objects = AstronomicObject.with_const(@const_name).with_catalog(@catalog).order(:name) 
     object = @objects.first
     if params[:object].present?
       object = AstronomicObject.where(id: params[:object]).first
     end  
 
+
     @object_selected = object
-
-
 
     if object.catalog == 'SolarSistem'
       coords = `python ./planeta.py -o #{object.name} -d #{DateTime.now.strftime("%Y/%m/%dt%H:%M:%S") }`
@@ -77,4 +85,7 @@ class ControlController < ApplicationController
     end  
     respond_with(@objects)
   end
+
+
+
 end

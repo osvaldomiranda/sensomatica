@@ -1,0 +1,2 @@
+module TypeObjectsHelper
+end

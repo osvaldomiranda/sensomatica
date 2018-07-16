@@ -42,6 +42,6 @@ class AstronomicObjectsController < ApplicationController
     end
 
     def astronomic_object_params
-      params.require(:astronomic_object).permit(:name, :catalog, :type_object, :ra, :dec, :constellation, :bmag, :hubble)
+      params.require(:astronomic_object).permit([:name, :catalog, :type_object, :ra, :dec, :constellation, :bmag, :hubble]).to_h
     end
 end

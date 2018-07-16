@@ -31,3 +31,8 @@ tbody td, thead th {
     width: 19.2%;
     float: left;
 }
+
+#messages{
+  overflow-y: auto;
+  max-height: 100px;
+}

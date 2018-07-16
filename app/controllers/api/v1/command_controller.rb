@@ -11,10 +11,11 @@ class Api::V1::CommandController < ApplicationController
 
     if command.present?
       render :json=> {command: command} , :status => :ok
+      command.status = 'OK'
+      command.save
     else
       render :json=> {command: " "} , :status => :ok
     end     
-    command.status = 'OK'
-    command.save
+
   end
 end

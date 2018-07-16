@@ -1,0 +1,23 @@
+%h1 Listing type_objects
+
+%table
+  %thead
+    %tr
+      %th Type name
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @type_objects.each do |type_object|
+      %tr
+        %td= type_object.type_name
+        %td= type_object.name
+        %td= link_to 'Show', type_object
+        %td= link_to 'Edit', edit_type_object_path(type_object)
+        %td= link_to 'Destroy', type_object, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Type object', new_type_object_path

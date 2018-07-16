@@ -1,12 +1,10 @@
 Sensomatica::Application.routes.draw do
   
   
+  resources :type_objects
   resources :commands
-
   resources :photos
-
   resources :photo_sessions
-
   resources :reservs
 
   get "control/index"
@@ -46,6 +44,11 @@ Sensomatica::Application.routes.draw do
       resources :photos do
         collection do
           post :upload
+        end
+      end
+      resources :telescopestatus do
+        collection do
+          post :changestatus
         end
       end
     end

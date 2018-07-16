@@ -42,6 +42,6 @@ class ReservsController < ApplicationController
     end
 
     def reserv_params
-      params.require(:reserv).permit(:user_id, :day, :equipment_id, :hours)
+      params.require(:reserv).permit([:user_id, :day, :equipment_id, :hours]).to_h
     end
 end

@@ -42,6 +42,6 @@ class CommandsController < ApplicationController
     end
 
     def command_params
-      params.require(:command).permit(:command, :type)
+      params.require(:command).permit([:command, :type]).to_h
     end
 end
