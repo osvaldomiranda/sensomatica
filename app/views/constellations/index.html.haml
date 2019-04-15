@@ -1,0 +1,25 @@
+%h1 Listing constellations
+
+%table
+  %thead
+    %tr
+      %th Short name
+      %th Latin name
+      %th Spanish name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @constellations.each do |constellation|
+      %tr
+        %td= constellation.short_name
+        %td= constellation.latin_name
+        %td= constellation.spanish_name
+        %td= link_to 'Show', constellation
+        %td= link_to 'Edit', edit_constellation_path(constellation)
+        %td= link_to 'Destroy', constellation, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Constellation', new_constellation_path

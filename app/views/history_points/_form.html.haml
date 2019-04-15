@@ -1,0 +1,10 @@
+= simple_form_for(@history_point) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.association :reserv
+    = f.input :used_points
+
+  .form-actions
+    = f.button :submit

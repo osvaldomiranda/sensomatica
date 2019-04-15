@@ -1,0 +1,10 @@
+= simple_form_for(@constellation) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :short_name
+    = f.input :latin_name
+    = f.input :spanish_name
+
+  .form-actions
+    = f.button :submit

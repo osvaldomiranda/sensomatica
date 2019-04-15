@@ -15,9 +15,6 @@
               %img{:alt => "...", :src => "http://placehold.it/300x300"}
             %br  
           .col-md-8.text-center
-            = link_to "Refrescar", control_index_path, class: 'btn btn-warning'
-            %br
-            %br
             .form-inline
               = label_tag :filter_const, "CONSTELACION"
               = select_tag :filter_const, options_for_select(AstronomicObject.const_for_select, @const_name), prompt: @const_name,class: "form-control"

@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Eqipment:
+  = @offer.eqipment
+%p
+  %b Date from:
+  = @offer.date_from
+%p
+  %b Date end:
+  = @offer.date_end
+%p
+  %b Ofer price:
+  = @offer.ofer_price
+%p
+  %b Ofer percent:
+  = @offer.ofer_percent
+%p
+  %b Tite1:
+  = @offer.tite1
+%p
+  %b Body:
+  = @offer.body
+
+= link_to 'Edit', edit_offer_path(@offer)
+\|
+= link_to 'Back', offers_path

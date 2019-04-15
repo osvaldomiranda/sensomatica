@@ -20,4 +20,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+
+  title1: "Operates a remote astronomical observatory"
+  title2: "In the cleanest skies in the world"
+  starts_now: "Starts Now"
+  equipment: "Equipment"
+  points: "Points"
+  events: "Events"
+  equipment: "Equipment"
+
+  code: "Code" 
+  name: "Name"
+  description: "Description"
+  characteristics: "Characteristics"
+
+  new_equipment: "New Equipment"
+  day: "Day"
+  hour: "Hour"
+  reserv_hours: "Reserv Hours"

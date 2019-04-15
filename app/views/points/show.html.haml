@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @point.user
+%p
+  %b Available points:
+  = @point.available_points
+%p
+  %b Used points:
+  = @point.used_points
+
+= link_to 'Edit', edit_point_path(@point)
+\|
+= link_to 'Back', points_path

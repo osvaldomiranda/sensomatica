@@ -1,27 +1,38 @@
-%h1 Listing equipment
-
-%table
-  %thead
-    %tr
-      %th Codigo
-      %th Nombre
-      %th Descripcion
-      %th Caracteristicas
-      %th
-      %th
-      %th
-
-  %tbody
-    - @equipment.each do |equipment|
-      %tr
-        %td= equipment.codigo
-        %td= equipment.nombre
-        %td= equipment.descripcion
-        %td= equipment.caracteristicas
-        %td= link_to 'Show', equipment
-        %td= link_to 'Edit', edit_equipment_path(equipment)
-        %td= link_to 'Destroy', equipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
 %br
+.container{:role => "main"}
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title AtacamaScope
+      .panel-body
+        .row
+          .col-md-12
+            %h1= t("equipment")
+            %br
+            %br
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th
+                  %th= t('code')
+                  %th= t('name')
+                  %th= t('description')
+                  / %th
+                  / %th
+                  / %th
 
-= link_to 'New Equipment', new_equipment_path
+              %tbody
+                - @equipment.each do |equipment|
+                  %tr
+                    %td
+                      = image_tag("celestron14.jpeg")
+                    %td= equipment.codigo
+                    %td= equipment.nombre
+                    %td= equipment.descripcion
+                    / %td= link_to 'Show', equipment
+                    / %td= link_to 'Edit', edit_equipment_path(equipment)
+                    / %td= link_to 'Destroy', equipment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+            %br
+
+            / = link_to t('new_equipment'), new_equipment_path

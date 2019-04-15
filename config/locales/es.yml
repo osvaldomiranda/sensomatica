@@ -1,0 +1,17 @@
+es:
+  title1: "Opera un observatorio astronómico remoto"
+  title2: "En los cielos más limpios del mundo"
+  starts_now: "Comienza ahora"
+  equipment: "Equipamiento"
+  points: "Puntos"
+  events: "Eventos"
+
+  code: "Codigo" 
+  name: "Nombre"
+  description: "Descripción"
+  characteristics: "Caracteristicas"
+
+  new_equipment: "Nuevo Equipo"
+  day: "Día"
+  hour: "Hora"
+  reserv_hours: "Horas Reservadas"

@@ -1,0 +1,14 @@
+= simple_form_for(@offer) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :eqipment
+    = f.input :date_from
+    = f.input :date_end
+    = f.input :ofer_price
+    = f.input :ofer_percent
+    = f.input :tite1
+    = f.input :body
+
+  .form-actions
+    = f.button :submit

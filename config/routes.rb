@@ -1,21 +1,31 @@
 Sensomatica::Application.routes.draw do
   
-  
+  resources :history_points
+  resources :points
+  resources :alerts
+  resources :offers
+  root to: "home#index"
+  get "home/index"
+  get "control/index"
+  post "control/index"
+  get "dashboard/index"
+
+  resources :constellations
   resources :type_objects
   resources :commands
   resources :photos
   resources :photo_sessions
   resources :reservs
-
-  get "control/index"
-  post "control/index"
-
-
-  get "dashboard/index"
+  # resources :users
 
   resources :astronomic_objects
 
-  devise_for :users
+ 
+
+      devise_for :users, controllers: {
+        sessions: 'users/sessions'
+      }
+
   resources :readings, only: :index do
     collection do
       get :lab
@@ -26,8 +36,8 @@ Sensomatica::Application.routes.draw do
 
   resources :equipment
 
-  root to: "home#index"
-  get "home/index"
+
+
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do

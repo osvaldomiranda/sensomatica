@@ -1,0 +1,33 @@
+%h1 Listing offers
+
+%table
+  %thead
+    %tr
+      %th Eqipment
+      %th Date from
+      %th Date end
+      %th Ofer price
+      %th Ofer percent
+      %th Tite1
+      %th Body
+      %th
+      %th
+      %th
+
+  %tbody
+    - @offers.each do |offer|
+      %tr
+        %td= offer.eqipment
+        %td= offer.date_from
+        %td= offer.date_end
+        %td= offer.ofer_price
+        %td= offer.ofer_percent
+        %td= offer.tite1
+        %td= offer.body
+        %td= link_to 'Show', offer
+        %td= link_to 'Edit', edit_offer_path(offer)
+        %td= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Offer', new_offer_path

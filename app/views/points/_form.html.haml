@@ -1,0 +1,10 @@
+= simple_form_for(@point) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :user
+    = f.input :available_points
+    = f.input :used_points
+
+  .form-actions
+    = f.button :submit

@@ -6,14 +6,14 @@ set_default(:postgresql_database) { "#{application}_#{rails_env}" }
 namespace :postgresql do
   desc "Install the latest stable release of PostgreSQL."
   task :install, roles: :db, only: {primary: true} do
-    run "#{sudo} add-apt-repository ppa:pitti/postgresql" do |ch, stream, data|
-      if data =~ /Press.\[ENTER\].to.continue/
-        ch.send_data("\n")
-      else
-        # Use the default handler for all other text
-        Capistrano::Configuration.default_io_proc.call(ch,stream,data)
-      end
-    end
+    # run "#{sudo} add-apt-repository ppa:pitti/postgresql" do |ch, stream, data|
+    #   if data =~ /Press.\[ENTER\].to.continue/
+    #     ch.send_data("\n")
+    #   else
+    #     # Use the default handler for all other text
+    #     Capistrano::Configuration.default_io_proc.call(ch,stream,data)
+    #   end
+    # end
     run "#{sudo} apt-get -y install postgresql-common"
     run "#{sudo} apt-get -y install postgresql-9.3 libpq-dev"
   end

@@ -1,0 +1,25 @@
+%h1 Listing history_points
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Reserv
+      %th Used points
+      %th
+      %th
+      %th
+
+  %tbody
+    - @history_points.each do |history_point|
+      %tr
+        %td= history_point.user
+        %td= history_point.reserv
+        %td= history_point.used_points
+        %td= link_to 'Show', history_point
+        %td= link_to 'Edit', edit_history_point_path(history_point)
+        %td= link_to 'Destroy', history_point, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New History point', new_history_point_path

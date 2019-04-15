@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_10_201948) do
+ActiveRecord::Schema.define(version: 2018_07_19_154450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alerts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_alerts_on_user_id"
+  end
 
   create_table "astronomic_objects", id: :serial, force: :cascade do |t|
     t.string "name", limit: 255
@@ -51,6 +60,14 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.integer "iso"
   end
 
+  create_table "constellations", force: :cascade do |t|
+    t.string "short_name"
+    t.string "latin_name"
+    t.string "spanish_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "equipment", id: :serial, force: :cascade do |t|
     t.string "codigo", limit: 255
     t.string "nombre", limit: 255
@@ -58,6 +75,17 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.text "caracteristicas"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "picture"
+  end
+
+  create_table "history_points", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "reserv_id"
+    t.integer "used_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reserv_id"], name: "index_history_points_on_reserv_id"
+    t.index ["user_id"], name: "index_history_points_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -68,6 +96,19 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.bigint "equipment_id"
+    t.date "date_from"
+    t.date "date_end"
+    t.integer "ofer_price"
+    t.float "ofer_percent"
+    t.string "tite1"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_id"], name: "index_offers_on_equipment_id"
   end
 
   create_table "photo_sessions", id: :serial, force: :cascade do |t|
@@ -87,6 +128,15 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.datetime "updated_at"
     t.index ["equipment_id"], name: "index_photos_on_equipment_id"
     t.index ["user_id"], name: "index_photos_on_user_id"
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "available_points"
+    t.integer "used_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_points_on_user_id"
   end
 
   create_table "readings", id: :serial, force: :cascade do |t|
@@ -115,6 +165,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.integer "hours"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "hour"
     t.index ["equipment_id"], name: "index_reservs_on_equipment_id"
     t.index ["user_id"], name: "index_reservs_on_user_id"
   end
@@ -145,6 +196,11 @@ ActiveRecord::Schema.define(version: 2018_07_10_201948) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "alerts", "users"
+  add_foreign_key "history_points", "reservs"
+  add_foreign_key "history_points", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "offers", "equipment"
+  add_foreign_key "points", "users"
 end

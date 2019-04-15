@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Short name:
+  = @constellation.short_name
+%p
+  %b Latin name:
+  = @constellation.latin_name
+%p
+  %b Spanish name:
+  = @constellation.spanish_name
+
+= link_to 'Edit', edit_constellation_path(@constellation)
+\|
+= link_to 'Back', constellations_path

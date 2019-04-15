@@ -3,7 +3,7 @@ class ControlController < ApplicationController
   respond_to :html
 
   def index
-    @chatroom = Chatroom.first
+    
     if params[:const].present?
       @const_name = params[:const]
       @catalog = params[:catalog]

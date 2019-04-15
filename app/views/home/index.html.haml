@@ -5,12 +5,18 @@
       .pull-right
         =link_to  "Login", new_user_session_path, class: 'btn btn-warning' 
         %ul.nav.navbar-nav
+          %li        
+            = link_to image_tag('english.png'), home_index_path(locale: :en)
+          %li  
+            = link_to image_tag('spanish.png'), home_index_path(locale: :es)
           %li
-            = link_to "Equipamiento", "" 
+            = link_to "Equipamiento", equipment_index_path 
           %li
             = link_to "Eventos Aastronómicos", ""           
           %li
             = link_to "Contacto", ""   
+
+
               
   .container
     %br
@@ -24,9 +30,9 @@
         .col-md-1
         .col-md-11
           %h1 
-            Opera un observatorio astronómico remoto
+            = t('title1')
           %h2
-            En los cielos mas limpios del mundo  
+            = t('title2')
     %br       
     .container 
       .landing_content 
@@ -34,7 +40,9 @@
           .col-md-4
           .col-md-4                  
             = link_to new_user_registration_path, class: 'btn btn_pill btn-block' do
-              Comienza ahora
+              = t('starts_now')
+
+
     %br          
 .bkg-blue
   .container

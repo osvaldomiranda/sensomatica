@@ -1,4 +1,4 @@
-set :ip, "35.167.207.47"
+set :ip, "18.236.147.83"
 # set :ip, "35.160.119.161" 
 set :rails_env, 'production'
 server "#{ip}", :web, :app, :db, primary: true,
